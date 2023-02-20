@@ -12,7 +12,6 @@
 // const t = new TestClass()
 // t.testMethod()
 
-
 // function first() {
 //     console.log('first')
 //     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -57,37 +56,33 @@
 // const payment = new purchase("연을 쫓는 아이")
 // console.log(payment)
 
-
 function Enumerable(enumerable: boolean) {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        descriptor.enumerable = enumerable
-    }
+	return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+		descriptor.enumerable = enumerable
+	}
 }
 
 class Person {
-    constructor(public name: string) {
-    }
+	constructor(public name: string) {}
 
-    @Enumerable(false)
-    sayHello() {
-        console.log(`Hello, ${this.name}`)
-    }
+	@Enumerable(false)
+	sayHello() {
+		console.log(`Hello, ${this.name}`)
+	}
 
-    @Enumerable(false)
-    set setName(name: string) {
-        this.name = name
-    }
+	@Enumerable(false)
+	set setName(name: string) {
+		this.name = name
+	}
 
-    @Enumerable(true)
-    get getName() {
-        return this.name
-    }
+	@Enumerable(true)
+	get getName() {
+		return this.name
+	}
 }
 
 const korean = new Person('kkagdugi')
-for(const key in korean) {
-    console.log(key, korean[key])
+for (const key in korean) {
+	console.log(key, korean[key])
 }
 korean.sayHello()
-
-
